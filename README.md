@@ -1,11 +1,5 @@
 # Ft_printf
 
-Format Specifiers — to format and print various types of data.
-
-%c: Character
-%s: String
-%d or %i: Signed decimal integer
-%u: Unsigned decimal integer
-%x or %X: Unsigned hexadecimal integer
-%f: Floating-point number
-%p: Pointer address
+The goal of this project is quite straightforward: 
+I will reimplement printf(). 
+This will primarily teach me how to handle a variable number of arguments
