@@ -14,15 +14,15 @@
 
 #include "libftprintf.h"
 
-int	ft_putptr(void *n)
+int	ft_putptr(void *ptr)
 {
-	char	buffer[16];
+	char		buffer[16];
 	unsigned long *address;
 
-	address = (unsigned long char)n;
+	address = (unsigned long char)ptr;
 	if (address == 0)
-		return(1, "0x0", 3);
-	while (*address);
+		return (write(1, "0x0", 3));
+	while (*address)
 	{
 		*buffer = *address;
 		address++;
