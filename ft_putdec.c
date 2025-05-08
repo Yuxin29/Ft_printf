@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putdec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 18:56:36 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/08 13:33:10 by yuwu             ###   ########.fr       */
+/*   Created: 2025/05/08 12:22:39 by yuwu              #+#    #+#             */
+/*   Updated: 2025/05/08 12:34:29 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putchar(char c)
+char	**flt_to_str(float nbr)
 {
-	return (write(1, &c, 1));
+	int	int_part;
+	float	flt_part;
+
+	int_part = (int)nbr;
+	flt_part = 
 }
 
-/*
-#include <stdio.h>
-int	main(void)
+int	ft_putdec(float	nbr)
 {
-	int	i;
+	dd
 
-	i = ft_putchar('c');
-	printf("%d\n", i);
-	return (0);
 }
-*/

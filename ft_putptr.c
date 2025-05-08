@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 18:56:36 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/08 13:33:10 by yuwu             ###   ########.fr       */
+/*   Created: 2025/05/08 12:02:39 by yuwu              #+#    #+#             */
+/*   Updated: 2025/05/08 12:21:13 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//• %p The void * pointer argument has to be printed in hexadecimal format
+
 #include "libftprintf.h"
 
-int	ft_putchar(char c)
+int	ft_putptr(void *n)
 {
-	return (write(1, &c, 1));
-}
+	char	buffer[16];
+	unsigned long *address;
 
-/*
-#include <stdio.h>
-int	main(void)
-{
-	int	i;
-
-	i = ft_putchar('c');
-	printf("%d\n", i);
-	return (0);
+	address = (unsigned long char)n;
+	if (address == 0)
+		return(1, "0x0", 3);
+	while (*address);
+	{
+		*buffer = *address;
+		address++;
+		buffer++;
+	}
+	ft_putstr(1, buffer, 16);
+	return (16);
 }
-*/
