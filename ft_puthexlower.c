@@ -75,13 +75,16 @@ int	ft_puthexlower(unsigned int i)
 	return (count);
 }
 
+/* my own test 
 int	main(void)
 {
-	int	test = ft_puthexlower(255);
+	int	test;
 	char c = ft_numtoalpha(16);
 	char *str = ft_transfer(255);
+	test = ft_puthexlower(255);
+	write(1, "\n", 1);
 	printf("%i\n", test);
 	printf("%c\n", c);
 	printf("%s\n", str);
 	return (0);
-}
+} */

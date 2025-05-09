@@ -19,6 +19,7 @@ int	main(void)
 	char	*ptr;
 
 	ptr = "test";
+	printf("%s\n", "First some plays about the official printf");
 	printf("%c\n", 'a');
 	printf("%s\n", "aa");
 	printf("%p\n", &ptr);
@@ -28,15 +29,15 @@ int	main(void)
 	printf("%x\n", 255);
 	printf("%X\n", 255);
 	printf("%%\n");
-	printf("cspdiuxX");
 	printf("Age: %d\n", 25);
     	printf("Height: %d\n", 163);
     	printf("Grade: %c\n", 'A');
-	printf(NULL);
+	printf("%s\n", "Below are my own basic tests");
 	ft_printf("ss\n");
 	ft_printf("%i\n", 33);
 	ft_printf("%d\n", 33);
 	ft_printf("%u\n", 33);
 	ft_printf("%x\n", 255);
+	ft_printf("%X\n", 255);
 	return (0);
 }

@@ -34,9 +34,9 @@ static int	ft_type(const char *str, va_list args)
 				re_value += ft_putdecu(va_arg(args, unsigned int));
 			else if (str[n] == 'x')
 				re_value += ft_puthexlower(va_arg(args, unsigned int));
-		/*	else if (str[n] == 'X')
+			else if (str[n] == 'X')
 				re_value += ft_puthexupper(va_arg(args, unsigned int));
-			else if (str[n] == 'p')
+		/*	else if (str[n] == 'p')
 				re_value += ft_putptr(va_arg(args, void *));  */
 			else if (str[n] == '%')
 				re_value += ft_putchar('%');
