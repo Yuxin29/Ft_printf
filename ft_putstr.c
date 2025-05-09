@@ -16,15 +16,15 @@ int	ft_putchar(char c);
 
 int	ft_putstr(char *s)
 {
-	int	i;
+	int	count;
 
-	i = 0;
-	while (s[i])
+	count = 0;
+	while (*s)
 	{
-		ft_putchar(s[i]);
-		i++;
+		count += ft_putchar(*s);
+		s++;
 	}
-	return (i);
+	return (count);
 }
 
 /*
