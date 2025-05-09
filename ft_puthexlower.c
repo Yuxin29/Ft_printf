@@ -12,13 +12,32 @@
 
 #include "libftprintf.h"
 
-int	ft_puthexlower(unsigned int	i)
+static char *ft_transfer(unsigned int i)
+{
+	char	*buffer;
+	int	index;
+	
+	buffer = malloc(sizeof(char) * 17);
+	if (!buffer)
+		return (NULL);
+	index = 0;
+	while (i > 1)
+	{
+		buffer[index] = i % 16;
+		i = i / 16;
+		index++;		
+	}
+	buffer[index] = '\n';
+	return (buffer);
+}
+
+int	ft_puthexlower(unsigned int i)
 {
 	int count;
-
-	count = 0;
-	{
-		...
-	}
+	char	*trans;
+	
+	trans = ft_transfer(i);
+	count = ft_putchar(*trans);
+	free (trans);
 	return (count);
 }

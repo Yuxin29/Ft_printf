@@ -20,7 +20,7 @@ int	ft_putdec(int i)
 	int	count;
 
 	count = 0;
-	if (i == -2147483648)	
+	if (i == -2147483648)
 		return (ft_putstr("-2147483648"));
 	if (i < 0)
 	{

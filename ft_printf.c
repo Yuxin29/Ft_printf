@@ -14,9 +14,11 @@
 
 static int	ft_type(const char *str, va_list args)
 {
-	int		n = 0;
-	int		re_value = 0;
+	int		n;
+	int		re_value;
 
+	n = 0;
+	re_value = 0;
 	while (str[n])
 	{
 		if (str[n] == '%' && str[n + 1])
@@ -24,19 +26,19 @@ static int	ft_type(const char *str, va_list args)
 			n++;
 			if (str[n] == 's')
 				re_value += ft_putstr(va_arg(args, char *));
-		/*	else if (str[n] == 'p')
-				re_value += ft_putptr(va_arg(args, void *));
-		*/	else if (str[n] == 'd')
+			else if (str[n] == 'd')
 				re_value += ft_putdec(va_arg(args, int));
 			else if (str[n] == 'i')
 				re_value += ft_putint(va_arg(args, int));
-		/*	else if (str[n] == 'u')
+			else if (str[n] == 'u')
 				re_value += ft_putdecu(va_arg(args, unsigned int));
 			else if (str[n] == 'x')
 				re_value += ft_puthexlower(va_arg(args, unsigned int));
-			else if (str[n] == 'X')
+		/*	else if (str[n] == 'X')
 				re_value += ft_puthexupper(va_arg(args, unsigned int));
-		*/	else if (str[n] == '%')
+			else if (str[n] == 'p')
+				re_value += ft_putptr(va_arg(args, void *));  */
+			else if (str[n] == '%')
 				re_value += ft_putchar('%');
 		}
 		else

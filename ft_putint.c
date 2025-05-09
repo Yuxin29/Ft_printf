@@ -15,12 +15,12 @@
 int	ft_putchar(char c);
 int	ft_putstr(char *s);
 
-int	ft_putint(i)
+int	ft_putint(int i)
 {
 	int	count;
 
 	count = 0;
-	if (i == -2147483648)	
+	if (i == -2147483648)
 		return (ft_putstr("-2147483648"));
 	if (i < 0)
 	{

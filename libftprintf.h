@@ -17,16 +17,15 @@
 # include <unistd.h> //ft: malloc and free, included in libft.h
 # include <stdarg.h> //handling variable arguements: va_start/_arg/_copy/_end
 
-int	ft_printf(const char *, ...);
-int	ft_putchar(char	c);
+int	ft_printf(const char *str, ...);
+int	ft_putchar(char c);
 int	ft_putstr(char *s);
-int ft_putptr(void *ptr);
+int	ft_putptr(void *ptr);
 int	ft_putint(int i);
 int	ft_putdec(int i);
 int	ft_putdecu(unsigned int i);
-int	ft_puthexlower(unsigned int	i);
+int	ft_puthexlower(unsigned int i);
 int	ft_puthexupper(unsigned int i);
-
 
 #endif
 
@@ -40,4 +39,4 @@ int	ft_puthexupper(unsigned int i);
 //va_arg    get variable argument and retrieve the next arg in the list
 //va_end    end variable and clean up
 
-** ************************************************************************** */
+** ************************************************************************ */

@@ -37,5 +37,6 @@ int	main(void)
 	ft_printf("%i\n", 33);
 	ft_printf("%d\n", 33);
 	ft_printf("%u\n", 33);
+	ft_printf("%x\n", 255);
 	return (0);
 }
