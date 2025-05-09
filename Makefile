@@ -6,12 +6,12 @@
 #    By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 09:58:20 by yuwu              #+#    #+#              #
-#    Updated: 2025/05/09 12:12:27 by yuwu             ###   ########.fr        #
+#    Updated: 2025/05/09 17:11:01 by yuwu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libftprintf.a
-HEADERS := libftprintf.h
+HEADERS := ft_printf.h
 CFLAGS := -Wall -Wextra -Werror
 CC := cc
 
@@ -27,11 +27,11 @@ SRCS := ft_printf.c \
 
 OBJS := $(SRCS:%.c=%.o)
 
-$ (NAME): $(OBJS)
+$(NAME): $(OBJS)
 		ar -rcs $@ $^
 
-%.o: %.c &(HEADERS)
-		CC -c $< -o $@ $(CFLAGS)
+%.o: %.c $(HEADERS)
+		$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 

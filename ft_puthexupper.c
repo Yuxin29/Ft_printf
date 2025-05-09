@@ -6,16 +6,16 @@
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:58:39 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/09 11:59:28 by yuwu             ###   ########.fr       */
+/*   Updated: 2025/05/09 16:06:04 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static char	ft_numtoalpha(int nbr)
 {
 	char	c;
-	
+
 	if (nbr >= 10)
 		c = (nbr - 10) + 'A';
 	else
@@ -23,12 +23,12 @@ static char	ft_numtoalpha(int nbr)
 	return (c);
 }
 
-static void ft_reverse(char *s)
+static void	ft_reverse(char *s)
 {
-	int	t;
-	int	r;
+	int		t;
+	int		r;
 	char	temp;
-	
+
 	r = 0;
 	t = 0;
 	while (s[t])
@@ -43,11 +43,11 @@ static void ft_reverse(char *s)
 	}	
 }
 
-static char *ft_transfer(unsigned int i)
+static char	*ft_transfer(unsigned int i)
 {
 	char	*buffer;
-	int	index;
-	
+	int		index;
+
 	buffer = malloc(sizeof(char) * 17);
 	if (!buffer)
 		return (NULL);
@@ -56,7 +56,7 @@ static char *ft_transfer(unsigned int i)
 	{
 		buffer[index] = ft_numtoalpha(i % 16);
 		i = i / 16;
-		index++;		
+		index += 1;	
 	}
 	ft_reverse(buffer);
 	buffer[index] = '\0';
@@ -65,9 +65,9 @@ static char *ft_transfer(unsigned int i)
 
 int	ft_puthexupper(unsigned int i)
 {
-	int count;
+	int		count;
 	char	*trans;
-	
+
 	trans = ft_transfer(i);
 	count = ft_putstr(trans);
 	free (trans);
