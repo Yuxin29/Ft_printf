@@ -25,13 +25,13 @@ int	main(void)
 	printf("%p\n", &ptr);
 	printf("%d\n", 999);
 	printf("%i\n", -22);
-	printf("%u\n", 33);
+	printf("%u\n", 4294967295);
 	printf("%x\n", 255);
 	printf("%X\n", 255);
 	printf("%%\n");
 	printf("Age: %d\n", 25);
-    	printf("Height: %d\n", 163);
-    	printf("Grade: %c\n", 'A');
+	printf("Height: %d\n", 163);
+	printf("Grade: %c\n", 'A');
 	printf("%s\n", "Below are my own basic tests");
 	ft_printf("ss\n");
 	ft_printf("%i\n", 33);

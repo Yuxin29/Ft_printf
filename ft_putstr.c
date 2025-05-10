@@ -6,19 +6,19 @@
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:08:34 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/08 13:50:04 by yuwu             ###   ########.fr       */
+/*   Updated: 2025/05/10 15:34:17 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_putchar(char c);
 
 int	ft_putstr(char *s)
 {
 	int	count;
 
 	count = 0;
+	if (!s)
+		return (write(1, "(null)", 6));
 	while (*s)
 	{
 		count += ft_putchar(*s);
@@ -26,15 +26,3 @@ int	ft_putstr(char *s)
 	}
 	return (count);
 }
-
-/*
-#include <stdio.h>
-int	main(void)
-{
-	int	test;
-
-	test = ft_putstr("abcdefg");
-	printf("%d\n", test);
-	return (0);
-}
-*/

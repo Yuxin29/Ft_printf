@@ -6,25 +6,13 @@
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:02:39 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/08 12:21:13 by yuwu             ###   ########.fr       */
+/*   Updated: 2025/05/10 17:09:36 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // %p The void * pointer argument has to be printed in hexadecimal format
 
 #include "ft_printf.h"
-#include <stdio.h>
-
-static char	ft_numtoalpha(int nbr)
-{
-	char	c;
-
-	if (nbr >= 10)
-		c = (nbr - 10) + 'a';
-	else
-		c = nbr + '0';
-	return (c);
-}
 
 static void	ft_reverse(char *s)
 {
@@ -36,14 +24,15 @@ static void	ft_reverse(char *s)
 	t = 0;
 	while (s[t])
 		t++;
-	t -= 1;
-	while (r <= t / 2)
+	t--;
+	while (r <= t)
 	{
 		temp = s[t];
-		s[r] = s[t - r];
-		s[t - r] = temp;
+		s[t] = s[r];
+		s[r] = temp;
 		r++;
-	}	
+		t--;
+	}
 }
 
 static char	*ft_transfer(unsigned long i)
@@ -57,39 +46,43 @@ static char	*ft_transfer(unsigned long i)
 	index = 0;
 	while (i >= 1)
 	{
-		buffer[index] = ft_numtoalpha(i % 16);
+		if ((i % 16) >= 10)
+			buffer[index] = ((i % 16) - 10) + 'a';
+		else
+			buffer[index] = (i % 16) + '0';
 		i = i / 16;
-		index += 1;	
+		index += 1;
 	}
-	ft_reverse(buffer);
 	buffer[index] = '\0';
+	ft_reverse(buffer);
 	return (buffer);
+}
+
+static int	puthexlower(unsigned long i)
+{
+	int		count;
+	char	*trans;
+
+	if (i == 0)
+		return (ft_putchar('0'));
+	trans = ft_transfer(i);
+	count = ft_putstr(trans);
+	free (trans);
+	return (count);
 }
 
 int	ft_putptr(void *ptr)
 {
-	unsigned long 	address;
-	char		*addr;
-	int	count;
+	unsigned long	address;
+	int				count;
 
+	if (!ptr)
+		return (ft_putstr("(nil)"));
 	address = (unsigned long)ptr;
 	if (address == 0)
 		return (write(1, "0x0", 3));
-	addr = ft_transfer(address);
-	count = ft_putstr(addr);
-	free (addr);
+	count = 0;
+	count += ft_putstr("0x");
+	count += puthexlower(address);
 	return (count);
 }
-
-/*
-int	main(void)
-{
-	char	*test;
-	
-	test = "seven";
-	printf("%s\n", test);
-	printf("%p\n", &test);
-	ft_putptr(&test);
-	return (0);
-}
-*/

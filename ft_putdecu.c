@@ -12,20 +12,15 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-
 int	ft_putdecu(unsigned int i)
 {
 	int	count;
 
 	count = 0;
 	if (i == 0)
-		return (ft_putchar(0));
-	while (i >= 1)
-	{
-		count += ft_putchar((i % 10) + '0');
-		i = i / 10;
-	}
+		return (ft_putchar('0'));
+	if (i >= 10)
+		count += ft_putdecu(i / 10);
+	count += ft_putchar((i % 10) + '0');
 	return (count);
 }

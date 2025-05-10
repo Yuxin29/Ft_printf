@@ -12,17 +12,6 @@
 
 #include "ft_printf.h"
 
-static char	ft_numtoalpha(int nbr)
-{
-	char	c;
-
-	if (nbr >= 10)
-		c = (nbr - 10) + 'A';
-	else
-		c = nbr + '0';
-	return (c);
-}
-
 static void	ft_reverse(char *s)
 {
 	int		t;
@@ -33,14 +22,15 @@ static void	ft_reverse(char *s)
 	t = 0;
 	while (s[t])
 		t++;
-	t -= 1;
-	while (r <= t / 2)
+	t--;
+	while (r <= t)
 	{
 		temp = s[t];
-		s[r] = s[t - r];
-		s[t - r] = temp;
+		s[t] = s[r];
+		s[r] = temp;
 		r++;
-	}	
+		t--;
+	}
 }
 
 static char	*ft_transfer(unsigned int i)
@@ -54,12 +44,15 @@ static char	*ft_transfer(unsigned int i)
 	index = 0;
 	while (i >= 1)
 	{
-		buffer[index] = ft_numtoalpha(i % 16);
+		if ((i % 16) >= 10)
+			buffer[index] = ((i % 16) - 10) + 'A';
+		else
+			buffer[index] = (i % 16) + '0';
 		i = i / 16;
-		index += 1;	
+		index += 1;
 	}
-	ft_reverse(buffer);
 	buffer[index] = '\0';
+	ft_reverse(buffer);
 	return (buffer);
 }
 
@@ -68,6 +61,8 @@ int	ft_puthexupper(unsigned int i)
 	int		count;
 	char	*trans;
 
+	if (i == 0)
+		return (ft_putchar('0'));
 	trans = ft_transfer(i);
 	count = ft_putstr(trans);
 	free (trans);

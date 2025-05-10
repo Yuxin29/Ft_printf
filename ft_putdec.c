@@ -12,25 +12,10 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-
 int	ft_putdec(int i)
 {
 	int	count;
 
-	count = 0;
-	if (i == -2147483648)
-		return (ft_putstr("-2147483648"));
-	if (i < 0)
-	{
-		i = -i;
-		count += ft_putchar('-');
-	}
-	while (i >= 1)
-	{
-		count += ft_putchar((i % 10) + '0');
-		i = i / 10;
-	}
+	count = ft_putint(i);
 	return (count);
 }
