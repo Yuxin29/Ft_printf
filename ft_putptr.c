@@ -6,7 +6,7 @@
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:02:39 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/10 17:09:36 by yuwu             ###   ########.fr       */
+/*   Updated: 2025/05/10 19:55:54 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 #include "ft_printf.h"
 
-static char	*get_posi_hex(unsigned int n)
+static char	*get_posi_hex(unsigned long n)
 {
 	int				count;
-	unsigned int	n_temp;
+	unsigned long	n_temp;
 	char			*nbr;
 
 	n_temp = n;
@@ -43,16 +43,16 @@ static char	*get_posi_hex(unsigned int n)
 	return (nbr);
 }
 
-int	puthexlower(unsigned int i)
+unsigned long	puthexlower(unsigned long i)
 {
 	int		count;
 	char	*trans;
 
-	if (i == 0)
-		return (ft_putchar('0'));
 	trans = get_posi_hex(i);
 	count = ft_putstr(trans);
 	free (trans);
+	if (count == -1)
+		return (-1);
 	return (count);
 }
 
@@ -60,14 +60,27 @@ int	ft_putptr(void *ptr)
 {
 	unsigned long	address;
 	int				count;
+	int				check;
 
+	check = 0;
 	if (!ptr)
-		return (ft_putstr("(nil)"));
+	{
+		if (ft_putstr("(nil)") == -1)
+			return (-1);
+		return (5);
+	}
 	address = (unsigned long)ptr;
 	if (address == 0)
-		return (write(1, "0x0", 3));
+	{
+		if (ft_putstr("0x0") == -1)
+			return (-1);
+		return (3);
+	}
 	count = 0;
-	count += ft_putstr("0x");
-	count += puthexlower(address);
-	return (count);
+	if (ft_putstr("0x") == -1)
+		return (-1);
+	check = puthexlower(address);
+	if (check == -1)
+		return (-1);
+	return (2 + check);
 }
