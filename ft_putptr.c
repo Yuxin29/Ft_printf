@@ -14,58 +14,43 @@
 
 #include "ft_printf.h"
 
-static void	ft_reverse(char *s)
+static char	*get_posi_hex(unsigned int n)
 {
-	int		t;
-	int		r;
-	char	temp;
+	int				count;
+	unsigned int	n_temp;
+	char			*nbr;
 
-	r = 0;
-	t = 0;
-	while (s[t])
-		t++;
-	t--;
-	while (r <= t)
+	n_temp = n;
+	count = 0;
+	while (n_temp >= 1)
 	{
-		temp = s[t];
-		s[t] = s[r];
-		s[r] = temp;
-		r++;
-		t--;
+		n_temp /= 16;
+		count++;
 	}
-}
-
-static char	*ft_transfer(unsigned long i)
-{
-	char	*buffer;
-	int		index;
-
-	buffer = malloc(sizeof(char) * 17);
-	if (!buffer)
+	nbr = malloc(sizeof(char) * (count + 1));
+	if (!nbr)
 		return (NULL);
-	index = 0;
-	while (i >= 1)
+	nbr[count] = '\0';
+	while (n > 0)
 	{
-		if ((i % 16) >= 10)
-			buffer[index] = ((i % 16) - 10) + 'a';
+		count--;
+		if ((n % 16) >= 10)
+			nbr[count] = (n % 16) - 10 + 'a';
 		else
-			buffer[index] = (i % 16) + '0';
-		i = i / 16;
-		index += 1;
+			nbr[count] = (n % 16) + '0';
+		n = n / 16;
 	}
-	buffer[index] = '\0';
-	ft_reverse(buffer);
-	return (buffer);
+	return (nbr);
 }
 
-static int	puthexlower(unsigned long i)
+int	puthexlower(unsigned int i)
 {
 	int		count;
 	char	*trans;
 
 	if (i == 0)
 		return (ft_putchar('0'));
-	trans = ft_transfer(i);
+	trans = get_posi_hex(i);
 	count = ft_putstr(trans);
 	free (trans);
 	return (count);

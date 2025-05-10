@@ -37,21 +37,29 @@ static int	ft_format(int c, va_list args)
 
 static int	ft_type(const char *str, va_list args)
 {
-	int		n;
 	int		re_value;
+	int		check;
 
-	n = 0;
 	re_value = 0;
-	while (str[n])
+	while (*str)
 	{
-		if (str[n] == '%' && str[n + 1])
+		if (*str == '%' && *(str + 1))
 		{
-			n++;
-			re_value += ft_format(str[n], args);
+			str++;
+			check = ft_format(*str, args);
+			if (check == -1)
+				return (-1);
+			else
+				re_value += check;
 		}
 		else
-			re_value += ft_putchar(str[n]);
-		n++;
+		{
+			if (ft_putchar(*str) == -1)
+				return (-1);
+			else
+				re_value += 1;
+		}
+		str++;
 	}
 	return (re_value);
 }

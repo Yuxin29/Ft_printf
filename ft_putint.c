@@ -6,7 +6,7 @@
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:16:21 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/09 13:38:40 by yuwu             ###   ########.fr       */
+/*   Updated: 2025/05/10 19:11:49 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,45 @@ static char	*get_positive_char(unsigned int n)
 	return (nbr);
 }
 
+int	ft_special(int i)
+{
+	if (i == -2147483648)
+	{
+		if (ft_putstr("-2147483648") == -1)
+			return (-1);
+		return (11);
+	}
+	if (i == 0)
+	{
+		if (ft_putchar('0') == -1)
+			return (-1);
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_putint(int i)
 {
 	int		count;
 	char	*nbr;
+	int		check;
 
 	count = 0;
-	if (i == -2147483648)
-		return (ft_putstr("-2147483648"));
-	if (i == 0)
-		return (ft_putchar('0'));
+	check = 0;
+	if (i == 0 || i == -2147483648)
+		return (ft_special(i));
 	if (i < 0)
 	{
-		count += ft_putchar('-');
+		if (ft_putchar('-') == -1)
+			return (-1);
+		count += 1;
 		i = -i;
 	}
 	nbr = get_positive_char(i);
-	count += ft_putstr(nbr);
+	check = ft_putstr(nbr);
+	if (check == -1)
+		return (-1);
+	count += check;
 	free (nbr);
 	return (count);
 }

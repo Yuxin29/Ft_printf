@@ -17,5 +17,7 @@ int	ft_putdec(int i)
 	int	count;
 
 	count = ft_putint(i);
+	if (count == -1)
+		return (-1);
 	return (count);
 }

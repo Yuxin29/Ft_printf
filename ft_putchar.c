@@ -14,5 +14,10 @@
 
 int	ft_putchar(int c)
 {
-	return (write(1, &c, 1));
+	int	count;
+
+	count = write(1, &c, 1);
+	if (count == -1)
+		return (-1);
+	return (count);
 }
