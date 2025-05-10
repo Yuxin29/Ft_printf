@@ -13,12 +13,12 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdlib.h> //ft: write, inlcuded in libft.h
-# include <unistd.h> //ft: malloc and free, included in libft.h
-# include <stdarg.h> //handling variable arguements: va_start/_arg/_copy/_end
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 int	ft_printf(const char *str, ...);
-int	ft_putchar(char c);
+int	ft_putchar(int c);
 int	ft_putstr(char *s);
 int	ft_putptr(void *ptr);
 int	ft_putint(int i);

@@ -12,19 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+int	ft_putchar(int c)
 {
 	return (write(1, &c, 1));
 }
-
-/*
-#include <stdio.h>
-int	main(void)
-{
-	int	i;
-
-	i = ft_putchar('c');
-	printf("%d\n", i);
-	return (0);
-}
-*/

@@ -12,6 +12,29 @@
 
 #include "ft_printf.h"
 
+static int	ft_format(int c, va_list args)
+{
+	if (c == 'c')
+		return (ft_putchar(va_arg(args, int)));
+	else if (c == 's')
+		return (ft_putstr(va_arg(args, char *)));
+	else if (c == 'd')
+		return (ft_putdec(va_arg(args, int)));
+	else if (c == 'i')
+		return (ft_putint(va_arg(args, int)));
+	else if (c == 'u')
+		return (ft_putdecu(va_arg(args, unsigned int)));
+	else if (c == 'x')
+		return (ft_puthexlower(va_arg(args, unsigned int)));
+	else if (c == 'X')
+		return (ft_puthexupper(va_arg(args, unsigned int)));
+	else if (c == 'p')
+		return (ft_putptr(va_arg(args, void *)));
+	else if (c == '%')
+		return (ft_putchar('%'));
+	return (0);
+}
+
 static int	ft_type(const char *str, va_list args)
 {
 	int		n;
@@ -24,22 +47,7 @@ static int	ft_type(const char *str, va_list args)
 		if (str[n] == '%' && str[n + 1])
 		{
 			n++;
-			if (str[n] == 's')
-				re_value += ft_putstr(va_arg(args, char *));
-			else if (str[n] == 'd')
-				re_value += ft_putdec(va_arg(args, int));
-			else if (str[n] == 'i')
-				re_value += ft_putint(va_arg(args, int));
-			else if (str[n] == 'u')
-				re_value += ft_putdecu(va_arg(args, unsigned int));
-			else if (str[n] == 'x')
-				re_value += ft_puthexlower(va_arg(args, unsigned int));
-			else if (str[n] == 'X')
-				re_value += ft_puthexupper(va_arg(args, unsigned int));
-			else if (str[n] == 'p')
-				re_value += ft_putptr(va_arg(args, void *));
-			else if (str[n] == '%')
-				re_value += ft_putchar('%');
+			re_value += ft_format(str[n], args);
 		}
 		else
 			re_value += ft_putchar(str[n]);
