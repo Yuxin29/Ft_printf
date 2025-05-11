@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar(int c)
+int	ft_putchar(char c)
 {
 	int	count;
 

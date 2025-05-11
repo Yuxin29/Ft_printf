@@ -6,7 +6,7 @@
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:02:39 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/10 19:55:54 by yuwu             ###   ########.fr       */
+/*   Updated: 2025/05/11 21:05:09 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,71 @@
 
 #include "ft_printf.h"
 
-static char	*get_posi_hex(unsigned long n)
+static char	*get_zero(void)
 {
-	int				count;
-	unsigned long	n_temp;
-	char			*nbr;
+	char	*nbr;
 
-	n_temp = n;
+	nbr = malloc(sizeof(char) * 2);
+	if (!nbr)
+		return (NULL);
+	nbr[0] = '0';
+	nbr[1] = '\0';
+	return (nbr);
+}
+
+static int	get_length(unsigned long n)
+{
+	int	count;
+
 	count = 0;
-	while (n_temp >= 1)
+	while (n >= 1)
 	{
-		n_temp /= 16;
+		n /= 16;
 		count++;
 	}
+	return (count);
+}
+
+static char	*get_posi_hex(unsigned long n)
+{
+	int		count;
+	char	*nbr;
+
+	if (n == 0)
+		return (get_zero());
+	count = get_length(n);
 	nbr = malloc(sizeof(char) * (count + 1));
 	if (!nbr)
 		return (NULL);
 	nbr[count] = '\0';
 	while (n > 0)
 	{
-		count--;
 		if ((n % 16) >= 10)
-			nbr[count] = (n % 16) - 10 + 'a';
+			nbr[--count] = (n % 16) - 10 + 'a';
 		else
-			nbr[count] = (n % 16) + '0';
+			nbr[--count] = (n % 16) + '0';
 		n = n / 16;
 	}
 	return (nbr);
-}
-
-unsigned long	puthexlower(unsigned long i)
-{
-	int		count;
-	char	*trans;
-
-	trans = get_posi_hex(i);
-	count = ft_putstr(trans);
-	free (trans);
-	if (count == -1)
-		return (-1);
-	return (count);
 }
 
 int	ft_putptr(void *ptr)
 {
 	unsigned long	address;
 	int				count;
-	int				check;
+	char			*trans;
 
-	check = 0;
 	if (!ptr)
-	{
-		if (ft_putstr("(nil)") == -1)
-			return (-1);
-		return (5);
-	}
+		return (ft_putstr("(nil)"));
 	address = (unsigned long)ptr;
-	if (address == 0)
-	{
-		if (ft_putstr("0x0") == -1)
-			return (-1);
-		return (3);
-	}
-	count = 0;
 	if (ft_putstr("0x") == -1)
 		return (-1);
-	check = puthexlower(address);
-	if (check == -1)
+	trans = get_posi_hex(address);
+	if (!trans)
 		return (-1);
-	return (2 + check);
+	count = ft_putstr(trans);
+	free (trans);
+	if (count == -1)
+		return (-1);
+	return (2 + count);
 }

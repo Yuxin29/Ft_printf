@@ -12,7 +12,19 @@
 
 #include "ft_printf.h"
 
-static char	*get_posi_hex_upper(unsigned int n)
+static char	*get_zero(void)
+{
+	char		*nbr;
+
+	nbr = malloc(sizeof(char) * 2);
+	if (!nbr)
+		return (NULL);
+	nbr[0] = '0';
+	nbr[1] = '\0';
+	return (nbr);
+}
+
+static char	*get_posi_hex(unsigned int n)
 {
 	int				count;
 	unsigned int	n_temp;
@@ -47,9 +59,22 @@ int	ft_puthexupper(unsigned int i)
 	char	*trans;
 
 	if (i == 0)
-		return (ft_putchar('0'));
-	trans = get_posi_hex_upper(i);
+	{
+		trans = get_zero();
+		if (!trans)
+			return (-1);
+		count = ft_putstr(trans);
+		free (trans);
+		if (count == -1)
+			return (-1);
+		return (count);
+	}
+	trans = get_posi_hex(i);
+	if (!trans)
+		return (-1);
 	count = ft_putstr(trans);
 	free (trans);
+	if (count == -1)
+		return (-1);
 	return (count);
 }

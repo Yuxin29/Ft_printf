@@ -18,7 +18,7 @@
 # include <stdarg.h>
 
 int	ft_printf(const char *str, ...);
-int	ft_putchar(int c);
+int	ft_putchar(char c);
 int	ft_putstr(char *s);
 int	ft_putptr(void *ptr);
 int	ft_putint(int i);
@@ -32,11 +32,9 @@ int	ft_puthexupper(unsigned int i);
 /* ************************************************************************** 
  macros: used to define new_datas: 
 		object-like, function-like, variadic like macros
-
 //va        variable arguments
 //va_list   a type of iterating arguments
 //va_start  initializes the argument list
 //va_arg    get variable argument and retrieve the next arg in the list
 //va_end    end variable and clean up
-
 ** ************************************************************************ */

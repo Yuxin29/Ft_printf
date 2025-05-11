@@ -15,18 +15,19 @@
 int	ft_putstr(char *s)
 {
 	int	count;
-	int	check;
 
-	check = 0;
 	count = 0;
 	if (!s)
-		return (write(1, "(null)", 6));
+	{
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		return (6);
+	}
 	while (*s)
 	{
-		check = ft_putchar(*s);
-		if (check == -1)
+		if (ft_putchar(*s) == -1)
 			return (-1);
-		count += check;
+		count += 1;
 		s++;
 	}
 	return (count);

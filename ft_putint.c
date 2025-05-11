@@ -73,10 +73,12 @@ int	ft_putint(int i)
 		i = -i;
 	}
 	nbr = get_positive_char(i);
+	if (!nbr)
+		return (-1);
 	check = ft_putstr(nbr);
+	free (nbr);
 	if (check == -1)
 		return (-1);
 	count += check;
-	free (nbr);
 	return (count);
 }
