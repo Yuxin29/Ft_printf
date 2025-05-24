@@ -32,7 +32,7 @@ static int	ft_format(char c, va_list args)
 		return (ft_putptr(va_arg(args, void *)));
 	else if (c == '%')
 		return (ft_putchar('%'));
-	return (0);
+	return (-1);
 }
 
 static int	ft_type(const char *str, va_list args)
@@ -43,21 +43,21 @@ static int	ft_type(const char *str, va_list args)
 	re_value = 0;
 	while (*str)
 	{
-		if (*str == '%' && *(str + 1))
+		if (*str == '%')
 		{
 			str++;
+			if (*str == 0)
+				return (-1);
 			check = ft_format(*str, args);
 			if (check == -1)
 				return (-1);
-			else
-				re_value += check;
+			re_value += check;
 		}
 		else
 		{
 			if (ft_putchar(*str) == -1)
 				return (-1);
-			else
-				re_value += 1;
+			re_value += 1;
 		}
 		str++;
 	}
@@ -70,7 +70,7 @@ int	ft_printf(const char *str, ...)
 	int		result;
 
 	if (!str)
-		return (0);
+		return (-1);
 	va_start(args, str);
 	result = ft_type(str, args);
 	va_end(args);

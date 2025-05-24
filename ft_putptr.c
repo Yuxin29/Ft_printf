@@ -6,7 +6,7 @@
 /*   By: yuwu <yuwu@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:02:39 by yuwu              #+#    #+#             */
-/*   Updated: 2025/05/11 21:05:09 by yuwu             ###   ########.fr       */
+/*   Updated: 2025/05/12 18:42:55 by yuwu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*get_zero(void)
 	return (nbr);
 }
 
-static int	get_length(unsigned long n)
+static int	get_length(uintptr_t n)
 {
 	int	count;
 
@@ -39,7 +39,7 @@ static int	get_length(unsigned long n)
 	return (count);
 }
 
-static char	*get_posi_hex(unsigned long n)
+static char	*get_posi_hex(uintptr_t n)
 {
 	int		count;
 	char	*nbr;
@@ -64,13 +64,13 @@ static char	*get_posi_hex(unsigned long n)
 
 int	ft_putptr(void *ptr)
 {
-	unsigned long	address;
-	int				count;
-	char			*trans;
+	uintptr_t	address;
+	int			count;
+	char		*trans;
 
 	if (!ptr)
 		return (ft_putstr("(nil)"));
-	address = (unsigned long)ptr;
+	address = (uintptr_t)ptr;
 	if (ft_putstr("0x") == -1)
 		return (-1);
 	trans = get_posi_hex(address);

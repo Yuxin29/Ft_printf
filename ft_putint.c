@@ -38,7 +38,7 @@ static char	*get_positive_char(unsigned int n)
 	return (nbr);
 }
 
-int	ft_special(int i)
+static int	ft_special(int i)
 {
 	if (i == -2147483648)
 	{
